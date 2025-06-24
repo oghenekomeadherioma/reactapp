@@ -85,13 +85,11 @@ Sync your build/ folder to S3 automatically
 Output the public site URL
 
 ✅ Output Example
-makefile
-Copy
-Edit
 Apply complete!
 Outputs:
 site_url = "https://www.komzi.online"
-🧠 Lessons Learned
+
+## 🧠 Lessons Learned
 How to write modular, reusable Terraform configurations
 
 Automating S3, CloudFront, and DNS via code
@@ -106,17 +104,14 @@ Debugging:
 
 -Using CloudFront console to route domain when Route 53 alias fails
 
-## Challenges Faced
-Challenge	Solution
-BucketAlreadyExists error	Renamed S3 bucket to a unique name
-The bucket does not allow ACLs	Removed --acl public-read since ACLs are disabled by default now
-Domain not resolving	Used CloudFront console “Route domain” option
-Terraform website/website_endpoint deprecated	Noted AWS provider updates for future migration
+
+## Challenges faced and their	Solutions
+BucketAlreadyExists error-	Renamed S3 bucket to a unique name
+The bucket does not allow ACLs -	Removed --acl public-read since ACLs are disabled by default now
+Domain not resolving- Used CloudFront console “Route domain” option
+Terraform website/website_endpoint deprecated- 	Noted AWS provider updates for future migration
+Deleted the large terraform files manually
 
 📬 Author
 Kome Adherioma
 
-🏁 Status
-✅ Fully automated infrastructure
-✅ Deployed & live at https://komzi.online
-✅ Ready to share on GitHub or submit for review
