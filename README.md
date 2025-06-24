@@ -1,4 +1,7 @@
-# 🚀 React App Deployment on AWS with Terraform
+# React App Deployment on AWS with Terraform
+[![Live](https://img.shields.io/badge/live-site-green?style=for-the-badge&logo=amazonaws)](https://www.komzi.online)
+
+![Terraform](https://img.shields.io/badge/Terraform-AWS-blueviolet?style=for-the-badge&logo=terraform)
 
 This project demonstrates how to automate the deployment of a React frontend application using **Terraform** and **AWS services** like S3, CloudFront, Route 53, and ACM for HTTPS and custom domain hosting.
 
@@ -25,32 +28,6 @@ This project demonstrates how to automate the deployment of a React frontend app
 
 ## 📁 Project Structure
 
-# 🚀 React App Deployment on AWS with Terraform
-
-This project demonstrates how to automate the deployment of a React frontend application using **Terraform** and **AWS services** like S3, CloudFront, Route 53, and ACM for HTTPS and custom domain hosting.
-
----
-
-## 🌐 Live Site
-
-👉 [https://komzi.online](https://komzi.online)
-
----
-
-## 🧰 Tools & Services Used
-
-| Tool         | Purpose                                     |
-|--------------|---------------------------------------------|
-| **React**    | Frontend application                        |
-| **Terraform**| Infrastructure as Code                      |
-| **AWS S3**   | Hosting static React build                  |
-| **CloudFront** | CDN with HTTPS for fast global access     |
-| **ACM**      | SSL certificate management                  |
-| **Route 53** | Custom domain DNS routing                   |
-
----
-
-## 📁 Project Structure
 my-react-aws-demo/
 ├── build/ # React app build output
 ├── terraform/ # Terraform configurations
@@ -75,7 +52,7 @@ my-react-aws-demo/
 
 ---
 
-##  How to Deploy
+## 🚀 How to Deploy
 
 > 💡 Make sure your IAM user has permissions for S3, CloudFront, Route 53, and ACM.
 
@@ -92,16 +69,13 @@ my-react-aws-demo/
 ```bash
 npm install
 npm run build
+```
+## 3. Deploy with Terraform
 
----
-
-### 3. Deploy with terraform 
-```bash
 cd terraform
 terraform init
 terraform plan
 terraform apply
-
 Terraform will:
 
 Create all AWS resources
@@ -110,22 +84,39 @@ Sync your build/ folder to S3 automatically
 
 Output the public site URL
 
-## 🧠 Lessons Learned
+✅ Output Example
+makefile
+Copy
+Edit
+Apply complete!
+Outputs:
+site_url = "https://www.komzi.online"
+🧠 Lessons Learned
+How to write modular, reusable Terraform configurations
 
-- Gained hands-on experience writing modular Terraform code for infrastructure provisioning
-- Learned how to automate deployment of a React app using S3, CloudFront, and Route 53
-- Understood the importance of correct bucket policies and region placement for ACM certificates
-- Discovered how to debug common issues like S3 ACL permissions, domain resolution, and CloudFront propagation
-- Learned how to use CloudFront’s “Route domains automatically” feature to fix DNS mapping issues
+Automating S3, CloudFront, and DNS via code
 
-##  Challenges Faced
+Debugging:
 
-| Challenge                                           | Solution                                                                 |
-|-----------------------------------------------------|--------------------------------------------------------------------------|
-| `BucketAlreadyExists` error                         | Used a globally unique S3 bucket name                                    |
-| React build files failed to upload (`ACL` issue)    | Removed `--acl public-read` flag and relied on bucket policy             |
-| Custom domain not resolving to CloudFront           | Used CloudFront's “Route domains automatically” feature in the console   |
-| Terraform deprecation warnings                      | Noted the need to migrate from deprecated `website` and `website_endpoint` attributes |
-| IAM issues with credentials                         | Created an IAM user with correct permissions instead of using root       |
+-S3 ACL & upload errors
 
+-Domain not resolving
 
+-SSL setup failures
+
+-Using CloudFront console to route domain when Route 53 alias fails
+
+## Challenges Faced
+Challenge	Solution
+BucketAlreadyExists error	Renamed S3 bucket to a unique name
+The bucket does not allow ACLs	Removed --acl public-read since ACLs are disabled by default now
+Domain not resolving	Used CloudFront console “Route domain” option
+Terraform website/website_endpoint deprecated	Noted AWS provider updates for future migration
+
+📬 Author
+Kome Adherioma
+
+🏁 Status
+✅ Fully automated infrastructure
+✅ Deployed & live at https://komzi.online
+✅ Ready to share on GitHub or submit for review
